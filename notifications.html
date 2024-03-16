@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="w-[1000px] mx-auto">
+      <div class="flex flex-col items-center justify-center px-6 py-8 w-full mt-10 lg:py-0">
+          <div class="w-full bg-white rounded-lg shadow  md:mt-0 xl:p-0 ">
+              <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                  <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+                      Notifications
+                  </h1>
+                  <div class="overflow-x-auto">
+                    {% if notifications %}
+                    <ul class="list-none p-0">
+                        {% for notification in notifications %}
+                            <li class="p-4 border-b border-gray-200 ">
+                                <p class="text-gray-800 ">{{ notification.message }}</p>
+                                <span class="text-xs text-gray-500 ">{{ notification.created_at }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-gray-800">No notifications available.</p>
+                {% endif %}
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+{% endblock content %}

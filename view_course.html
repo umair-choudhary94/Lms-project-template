@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="">
+    <div class="w-1/2 mx-auto py-5">
+        <div class="bg-white rounded p-6">
+            <h1 class="text-3xl font-bold">Module Name : {{course.title}}</h1>
+            <p>{{course.description}}</p>
+            <ul class="mb-4">
+                <li>Course Category : {{course.category}}</li>
+                <li>Schedule : {{course.schedule}}</li>
+                <li>Teacher Email : {{course.user.username}}</li>
+            </ul>
+            <a href="/enroll/{{course.id}}/" class="px-4 py-2 rounded text-blue-600">Enroll Now</a>
+            <a href="/feedback_support/{{course.id}}/" class="px-4 py-2 rounded text-blue-600">Write Feedback</a>
+        </div>
+
+        <div class="bg-white mt-5 rounded p-6">
+            <section class="bg-white  py-8 lg:py-16 antialiased">
+                <div class=" px-4">
+                    <div class="flex justify-between items-center mb-6">
+                      <h2 class="text-lg lg:text-2xl font-bold text-gray-900 ">Feedbacks ({{feedbacks.count}})</h2>
+                  </div>
+                  
+                  {% for feedback in feedbacks %}
+                  <article class="p-6 text-base bg-white rounded-lg ">
+                      <div class="flex justify-between items-center mb-2">
+                          <div class="flex items-center">
+                              <p class="inline-flex items-center mr-3 text-sm text-gray-900  font-semibold">LMS</p>
+                              <p class="text-sm text-gray-600 "><time pubdate datetime="{{post.created_date}}"
+                                      title="February 8th, 2022">{{feedback.name}} </time></p>
+                          </div>
+                          
+                          
+                      </div>
+                      <p class="text-gray-500 ">{{feedback.description}}</p>
+                      
+                  </article>
+                  {% endfor %}
+                  
+                </div>
+              </section>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

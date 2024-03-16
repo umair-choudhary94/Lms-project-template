@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="w-[1000px] mx-auto">
+    <div class="flex flex-col items-center justify-center px-6 py-8 w-full  mt-10 lg:py-0">
+        <div class="w-full bg-white rounded-lg shadow  md:mt-0  xl:p-0 ">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+                    Students Enrolled in {{ course.title }}
+                </h1>
+                <div class="overflow-x-auto">
+                    <table class="w-full border border-gray-300 divide-y divide-gray-200">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Profile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ student.user.first_name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ student.user.username }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href="/profile/{{student.user.userprofile.id}}/" class="px-3 py-1 bg-blue-700 text-white rounded">Visit</a>
+                                        <a href="/removeenrollment/{{student.id}}/" class="px-3 py-1 bg-red-700 text-white rounded">Block | Remove</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

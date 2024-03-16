@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="h-screen">
+    <div class="md:w-3/4 mx-auto py-4 ">
+        <div class="p-4 bg-white rounded mt-3 flex justify-between ">
+            <h2 class="text-2xl font-bold text-blue-600">Teacher Dashboard</h2>
+            <div>
+                <a href="/usersearch" class='bg-black text-white px-3 py-1 rounded'>Search</a>
+            <a href="/notifications" class='bg-yellow-400 text-black px-3 py-1 rounded'>Notification</a>
+            </div>
+            
+        </div>
+        <div class="p-4 bg-white rounded mt-3 ">
+            <div class='flex justify-between'>
+
+                <h2 class="text-2xl font-bold">Overview</h2>
+               
+            </div>
+            <p>
+                <p class='text-sm'>
+                    Summary of courses, pending actions and recent Activity.
+                </p>
+            
+
+<div class="relative overflow-x-auto mt-4">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Course Title
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Category
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Descriptions
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Scheduled Start
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Student Enrolled
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+                <tr class="bg-white border-b ">
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                        {{ course.title }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ course.category }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ course.description }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ course.schedule }}
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="/students/{{course.id}}/" class="text-blue-600">View</a>
+                    </td>
+                    <td class="px-6 py-4">
+                        {% comment %} {% url 'delete_course' course.id %} {% endcomment %}
+                        <a href="{% url 'delete_course' course.id %}" class="text-blue-600 me-2">Delete</a>
+                        <a href="{% url 'upload_material' course.id %}" class="text-blue-600 ">Upload Material</a>
+                        
+                        <!-- Adjust the URL and styling as needed -->
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+            </p>
+
+        </div>
+        <div class="p-4 bg-white rounded mt-3 ">
+            <h1 class="text-2xl font-bold">Course Management</h1>
+            <p class="mt-4">
+                <a href="/create_course" class=" mt-2 bg-blue-100 px-4 py-1 rounded hover:bg-blue-200 text-blue-600">Create Course</a>
+                
+            </p>
+
+        </div>
+        
+        
+    </div>
+</section>
+
+{% endblock content %}
